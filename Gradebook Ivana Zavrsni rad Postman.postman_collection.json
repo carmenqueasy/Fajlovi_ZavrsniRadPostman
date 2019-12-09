@@ -1,0 +1,1266 @@
+{
+	"info": {
+		"_postman_id": "f4e8bc4a-cd2b-4c15-a09a-cebeee22b548",
+		"name": "Gradebook Ivana Zavrsni rad Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register Page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6610d85b-7456-472c-8575-8baf21658531",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202,200]);",
+							"});   ",
+							"",
+							"",
+							"pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstName\":\"4IIIIVAAAAA\",\"lastName\":\"pejicccc\",\"email\":\"ivana40011@gmail.com\",\"password\":\"ivana4001\"}"
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6823244a-4143-49d7-944f-af1240665398",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"postman.setEnvironmentVariable(\"gradebook_token\",jsonData.token);",
+							"",
+							"postman.setEnvironmentVariable(\"id\",jsonData.user.id);",
+							"",
+							"//pm.environment.set(\"user_id\", jsonData.user.id);",
+							"//console.log(\"user_id\");",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"ivana40011@gmail.com\",\n\"password\": \"ivana4001\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Professors page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68d88431-7d03-4b9b-829f-13b309d55f04",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/professors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Gradebook Page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dfa61382-6b26-4d38-b6b7-eebb50d3bb2d",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/professors?onlyUnsignedProfessors=true",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professors"
+					],
+					"query": [
+						{
+							"key": "onlyUnsignedProfessors",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Professor Page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa3586d6-0dff-47a4-b8d9-f73c986562b5",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/professors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Home Pagination for Gradebooks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData);",
+							"",
+							"",
+							"tests[\"Home page pagination for Gradebook is \" + jsonData['data'].length] = jsonData[\"data\"].length === 10;",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/diaries?page=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Professor - input data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b75160b0-aab4-46c1-a35a-badb880694ee",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"console.log(jsonData);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": [\n        \"https://cdn1.vectorstock.com/i/1000x1000/03/70/superwoman-in-formal-office-suit-with-red-tie-and-vector-21070370.jpg\", \"https://i.ebayimg.com/images/g/joMAAOSw4DJYkIU8/s-l300.jpg, https://www.dhresource.com/600x600/f2/albu/g7/M00/FB/F7/rBVaSVuY21CAWLmuAAERGYnAYB4668.jpg\"\n    ],\n    \"firstName\": \"ivana\",\n    \"lastName\": \"pejic\",\n    \"diary_id\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/professors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Creation new professor testing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"var lastProfesor = jsonData[jsonData.length-1].id;",
+							"console.log(lastProfesor)",
+							"",
+							"",
+							"pm.environment.set(\"Professor_id\", jsonData[jsonData.length-1].user.professor.id);",
+							"",
+							"var kreiraniProfesor = pm.environment.get(\"Professor_id\");",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"firstName\", \"lastName\", \"title\", \"url\");",
+							"});",
+							"",
+							"",
+							"var stvarniProfesor = jsonData[jsonData.length-1].id;",
+							"console.log(stvarniProfesor)",
+							"",
+							"",
+							"",
+							"pm.environment.set(\"professor_firstName\", jsonData[jsonData.length-1].user.firstName);",
+							"var kreiranoIme = pm.environment.get(\"professor_firstName\"); ",
+							"console.log(kreiranoIme);",
+							"var stvarnoIme = jsonData[jsonData.length-1].user.firstName;",
+							"console.log(stvarnoIme)",
+							"",
+							"",
+							"pm.environment.set(\"professor_lastName\", jsonData[jsonData.length-1].user.lastName);",
+							"var kreiranoPrezime = pm.environment.get(\"professor_lastName\"); ",
+							"console.log(kreiranoPrezime);",
+							"var stvarnoPrezime = jsonData[jsonData.length-1].user.lastName;",
+							"console.log(stvarnoPrezime)",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"tests[\"This correct PROFESSOR ID:  \" + jsonData[jsonData.length-1].user.professor.id] = stvarniProfesor === kreiraniProfesor;",
+							"",
+							"tests[\"This correct PROFESSOR FIRST NAME:  \" + jsonData[jsonData.length-1].user.firstName] = stvarnoIme === kreiranoIme;",
+							"",
+							"tests[\"This correct PROFESSOR LAST NAME:  \" + jsonData[jsonData.length-1].user.lastName] = stvarnoPrezime === kreiranoPrezime;",
+							"",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/professors",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Filter Gradebook - option Filter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "68d88431-7d03-4b9b-829f-13b309d55f04",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);",
+							"});",
+							"pm.test(\"Try filter option for Gradebook - find by ivana.\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ivana\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/search?search_term=ivana&page=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": "ivana"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Gradebook - input data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9ca7ff03-1346-4ccb-9dd1-b3329d807ef3",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"pm.environment.set(\"diary_id\", jsonData.id);",
+							"",
+							"pm.environment.set(\"diary_title\", jsonData.title);",
+							"",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"//pm.test(\"Successful POST request\", function () {",
+							"    //pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"//});",
+							"",
+							"pm.test(\"Response time is less than 1000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+						"key": "Authorization",
+						"value": "Bearer {{gradebook_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"ivana1234562222\",\n    \"professor_id\": \"{{Professor_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/diary",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Gradebook - check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aac576e7-d0ff-4a40-9a0d-56f9fac61ccc",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"//var stvarniDnevnik = jsonData.data[jsonData.data.length-1].id;",
+							"//console.log(stvarniDnevnik);",
+							"",
+							"",
+							"//var idKreiranogDnevnika = pm.environment.get(\"diary_id\");",
+							"",
+							"//console.log(idKreiranogDnevnika);",
+							"",
+							"",
+							"//var stvarniTitle = jsonData.data[jsonData.data.length-1].title;",
+							"//console.log(stvarniTitle);",
+							"//var kreiraniTitle = pm.environment.get(\"diary_title\"); ",
+							"//console.log(kreiraniTitle);",
+							"",
+							"//tests[\"This is real diary TITLE ( \" + jsonData.data[jsonData.data.length-1].id + \" )\"] = stvarniTitle === kreiraniTitle;",
+							"//tests[\"This real Diary ID\"] = stvarniDnevnik === idKreiranogDnevnika;",
+							"pm.test(\"Gradebook title:ivana1234562222\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ivana1234562222\")",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							" pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}",
+						"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman."
+					}
+				],
+				"url": {
+					"raw": "{{url}}/search?search_term=&page=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "search_term",
+							"value": ""
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Edit Gradebook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Gradebook TITLE is ok\", function () {",
+							"   pm.expect(jsonData.title).to.include(\"ivancica\");",
+							" });",
+							" ",
+							" pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"ivancica\",\n    \"professor_id\": \"{{id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/diaries/{{diary_id}}/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"{{diary_id}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/diaries/my-diary/9",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"my-diary",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Add Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});var jsonData = JSON.parse(responseBody);",
+							"",
+							"//postman.setEnvironmentVariable(\"text comment\",jsonData[0].text);",
+							"",
+							"",
+							"//console.log(title)",
+							"",
+							"pm.environment.set(\"comment_id\", jsonData.id);",
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"text\": \"sdfsdarko i ivana komentarf\",\n    \"user_id\": 9\n}"
+				},
+				"url": {
+					"raw": "{{url}}/diaries/{{diary_id}}/comments",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"{{diary_id}}",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Add Comment - check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"ivana\");",
+							"});",
+							"",
+							"var poslednjiKomentarId = jsonData.comments[jsonData.comments.length-1].id;",
+							"console.log(poslednjiKomentarId);",
+							"",
+							"var kreiraniKomentarId = pm.environment.get(\"comment_id\");",
+							"console.log(kreiraniKomentarId);",
+							"tests[\"This is correct COMMENT ID \" + jsonData.comments[jsonData.comments.length-1].id] = poslednjiKomentarId === kreiraniKomentarId;",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/diaries/{{diary_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"{{diary_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Delete Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/comments/{{comment_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"comments",
+						"{{comment_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Add Student",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"",
+							"",
+							"});var jsonData = JSON.parse(responseBody);",
+							"",
+							"postman.setEnvironmentVariable(\"student_id\",jsonData.id);",
+							"",
+							"",
+							"//console.log(title)",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"IVANA STUDENT\",\n    \"lastName\": \"PEJIC STUDENT\",\n    \"url\": [\"https://i.ebayimg.com/images/g/joMAAOSw4DJYkIU8/s-l300.jpg\"]\n}"
+				},
+				"url": {
+					"raw": "{{url}}/diaries/{{diary_id}}/students",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"{{diary_id}}",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Add Student - check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"postman.setEnvironmentVariable(\"student_id\",jsonData.id);",
+							"",
+							"",
+							"//console.log(title)",
+							"",
+							"",
+							"",
+							"pm.environment.set(\"student_id\", jsonData.students[jsonData.students.length-1].id);",
+							"pm.environment.set(\"student_name\", jsonData.students[jsonData.students.length-1].firstName);",
+							"pm.environment.set(\"student_lastname\", jsonData.students[jsonData.students.length-1].lastName);",
+							"",
+							"var stvarniStudent = jsonData.students[jsonData.students.length-1].id;",
+							"console.log(stvarniStudent);",
+							"var idKreiranogStudenta = pm.environment.get(\"student_id\");",
+							"console.log(idKreiranogStudenta);",
+							"/*var idNumberKreiranogDnevnika = Number(idKreiranogDnevnika);",
+							"console.log(idKreiranogDnevnika);*/",
+							"",
+							"var stvarnoStudentIme = jsonData.students[jsonData.students.length-1].firstName;",
+							"console.log(stvarnoStudentIme);",
+							"var kreiranoStudentIme = pm.environment.get(\"student_name\"); ",
+							"console.log(kreiranoStudentIme);",
+							"",
+							"var stvarnoStudentPrezime = jsonData.students[jsonData.students.length-1].lastName;",
+							"console.log(stvarnoStudentPrezime);",
+							"var kreiranoStudentPrezime = pm.environment.get(\"student_lastname\"); ",
+							"console.log(kreiranoStudentPrezime);",
+							"",
+							"tests[\"This is correct STUDENT LAST NAME \" + jsonData.students[jsonData.students.length-1].lastName] = stvarnoStudentIme === kreiranoStudentIme;",
+							"tests[\"This is correct STUDENT NAME  \" + jsonData.students[jsonData.students.length-1].firstName] = stvarnoStudentIme === kreiranoStudentIme;",
+							"tests[\"This is correct STUDENT ID \"] = stvarniStudent === idKreiranogStudenta;",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"novi studentttttttttttttttttttttttttt\",\n    \"lastName\": \"novi student\",\n    \"url\": []\n}"
+				},
+				"url": {
+					"raw": "{{url}}/diaries/{{diary_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"{{diary_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Delete GradeBook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/diaries/{{diary_id}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries",
+						"{{diary_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Gradebook Delete GradeBook - check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f01de8a-5274-44ea-8350-3f5787e4d780",
+						"exec": [
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"No Gradebook with that ID\", function(){",
+							"     pm.expect(jsonData.diary_id).to.eql();",
+							"})",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{gradebook_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/diaries",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"diaries"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
